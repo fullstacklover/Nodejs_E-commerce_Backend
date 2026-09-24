@@ -1,11 +1,18 @@
 import express from "express";
 import authController from "../../controllers/auth.js";
+import { loginValidator, registerValidator } from "../../validators/auth.js";
 
 const authRouter = express.Router();
 
-authRouter.post("/login", authController.Login);
+authRouter.post("/login",
+                loginValidator,
+                authController.Login
+);
 
-authRouter.post("/register", authController.Register);
+authRouter.post("/register", 
+                registerValidator, 
+                authController.Register
+);
 
 authRouter.post("/check/email", authController.checkEmail);
 
